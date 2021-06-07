@@ -2,7 +2,7 @@
 #define TEST 1 // Always change to 1 before your final submission to Github Classroom.
 #include "lib/catch.hpp"
 #include <stdlib.h>
-#include "bintree.hpp"
+#include "graph.hpp"
 
 // DO NOT CHANGE THIS METHOD
 int runCatchTests(int argc, char* const argv[])
@@ -15,7 +15,7 @@ int runCatchTests(int argc, char* const argv[])
  */
 int main(int argc, char* const argv[] ){
     // =====================
-    // Binary Trees
+    // Topology Search
     // ---------------------
     // Test your implemenation here:
     
