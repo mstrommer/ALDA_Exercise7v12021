@@ -9,3 +9,87 @@
 // =====================
 // Graph Testcases
 // ---------------------
+
+TEST_CASE("Test1", "checkNodes")
+{
+    graph *g = readGraphFromFile("makefile_");
+    INFO("(1) 'makefile_' not found. (provide file or set working directory). Ignore if (2) shows up.");
+    REQUIRE(g != nullptr);
+    topologySearch(g);
+    INFO("(2) Testing if nodes have been modified accordingly.");
+    for(int i = 0; i < g->numNodes; i++){
+        REQUIRE(g->nodes[i].color == BLACK);
+        REQUIRE(g->nodes[i].startTime != 0);
+        REQUIRE(g->nodes[i].endTime != 0);
+    }
+}
+
+TEST_CASE("Test2", "checkEndTimes")
+{
+    graph *g = readGraphFromFile("makefile_");
+    INFO("(1) 'makefile_' not found. (provide file or set working directory). Ignore if (2) shows up.");
+    REQUIRE(g != nullptr);
+    topologySearch(g);
+    INFO("(2) Testing if endTime is set accordingly.");
+    for(int i = 0; i < g->numNodes; i++){
+        if(strcmp(g->nodes[i].name,"treeApp") == 0){
+            REQUIRE(g->nodes[i].endTime < 5);
+        } else if(strcmp(g->nodes[i].name,"grammar.g") == 0){
+            REQUIRE(g->nodes[i].endTime > 10);
+        }
+    }
+}
+
+TEST_CASE("Test3", "checkList")
+{
+    graph *g = readGraphFromFile("makefile_");
+    INFO("(1) 'makefile_' not found. (provide file or set working directory). Ignore if (2) shows up.");
+    REQUIRE(g != nullptr);
+    list* list = topologySearch(g);
+    INFO("(2) Testing if list is not empty or not null.");
+    REQUIRE(list != nullptr);
+    REQUIRE(list->count != 0);
+}
+
+TEST_CASE("Test4", "checkListNodeCount")
+{
+    graph *g = readGraphFromFile("makefile_");
+    INFO("(1) 'makefile_' not found. (provide file or set working directory). Ignore if (2),(3) shows up.");
+    REQUIRE(g != nullptr);
+    list* list = topologySearch(g);
+    INFO("(2) Testing if there is a valid list.");
+    REQUIRE(list != nullptr);
+    INFO("(3) Testing if list contains all elements.");
+    REQUIRE(list->count == 17);
+}
+
+TEST_CASE("Test5", "checkIfTreeAppIsLast")
+{
+    graph *g = readGraphFromFile("makefile_");
+    INFO("(1) 'makefile_' not found. (provide file or set working directory). Ignore if (2),(3) shows up.");
+    REQUIRE(g != nullptr);
+    list* list = topologySearch(g);
+    INFO("(2) Testing if there is a valid list.");
+    REQUIRE(list != nullptr);
+    INFO("(3) Testing if treeApp is the last element in the list.");
+    element *tmp = list->head;
+    while (tmp != NULL) {
+        if(tmp->next == NULL)
+            break;
+        tmp = tmp->next;
+    }
+    REQUIRE(tmp != nullptr);
+    REQUIRE(strcmp(tmp->name,"treeApp")==0);
+}
+
+TEST_CASE("Test6", "checkOrder")
+{
+    graph *g = readGraphFromFile("makefile_");
+    INFO("(1) 'makefile_' not found. (provide file or set working directory). Ignore if (2),(3) shows up.");
+    REQUIRE(g != nullptr);
+    list* list = topologySearch(g);
+    INFO("(2) Testing if there is a valid list.");
+    REQUIRE(list != nullptr);
+    printf("(3) Printing sorted list. Will be graded manually. (2 Points)\n\n");
+    l_print(list);
+}

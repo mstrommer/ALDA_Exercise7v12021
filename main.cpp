@@ -18,9 +18,11 @@ int main(int argc, char* const argv[] ){
     // Topology Search
     // ---------------------
     // Test your implemenation here:
-    
-    
+    // read the makefile
+    // start topology search
+    // print the list
 
+    
     // DO NOT CHANGE CODE AFTER THIS LINE
     // This is where automatic testing starts, when the define macro constant is set to 1.
     // For local development you can set the constant to 0 until you finished your implementation.
