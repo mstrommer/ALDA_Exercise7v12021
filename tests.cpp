@@ -85,11 +85,11 @@ TEST_CASE("Test5", "checkIfTreeAppIsLast")
 TEST_CASE("Test6", "checkOrder")
 {
     graph *g = readGraphFromFile("makefile_");
-    INFO("(1) 'makefile_' not found. (provide file or set working directory). Ignore if (2),(3) shows up.");
+    INFO("(1) 'makefile_' not found. (provide file or set working directory). Ignore if (2) shows up.");
     REQUIRE(g != nullptr);
     list* list = topologySearch(g);
     INFO("(2) Testing if there is a valid list.");
     REQUIRE(list != nullptr);
-    printf("(3) Printing sorted list. Will be graded manually. (2 Points)\n\n");
+    printf("(3) Printing sorted list. Will be graded manually. (3 Points)\n\n");
     l_print(list);
 }
