@@ -15,7 +15,7 @@ TEST_CASE("Test1", "checkNodes")
     graph *g = readGraphFromFile("makefile_");
     REQUIRE(g != nullptr);
     topologySearch(g);
-    INFO("Testing if nodes have been modified accordingly.");
+    INFO("(1) Testing if nodes have been modified accordingly.");
     for(int i = 0; i < g->numNodes; i++){
         REQUIRE(g->nodes[i].color == BLACK);
         REQUIRE(g->nodes[i].startTime != 0);
@@ -28,7 +28,7 @@ TEST_CASE("Test2", "checkEndTimes")
     graph *g = readGraphFromFile("makefile_");
     REQUIRE(g != nullptr);
     topologySearch(g);
-    INFO("Testing if endTime is set accordingly.");
+    INFO("(1) Testing if endTime is set accordingly.");
     for(int i = 0; i < g->numNodes; i++){
         if(strcmp(g->nodes[i].name,"treeApp") == 0){
             REQUIRE(g->nodes[i].endTime < 5);
@@ -43,7 +43,7 @@ TEST_CASE("Test3", "checkList")
     graph *g = readGraphFromFile("makefile_");
     REQUIRE(g != nullptr);
     list* list = topologySearch(g);
-    INFO("Testing if list is not empty or not null.");
+    INFO("(1) Testing if list is not empty or not null.");
     REQUIRE(list != nullptr);
     REQUIRE(list->count != 0);
 }
